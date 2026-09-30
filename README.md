@@ -75,3 +75,13 @@ test/         تست‌های یکپارچه‌ی API با node:test
 - آپلود ویدیوی فرم اجرای شاگرد
 - پرداخت و اشتراک ماهانه‌ی شاگردان
 - اپ موبایل (React Native / PWA)
+
+## تصاویر
+
+| داشبورد مربی | تقویم شاگرد | سازنده‌ی تمرین |
+|---|---|---|
+| ![](docs/screenshots/1-dashboard.png) | ![](docs/screenshots/2-calendar.png) | ![](docs/screenshots/3-builder.png) |
+
+| پیشرفت | ثبت تمرین توسط شاگرد | پیام‌ها (موبایل) |
+|---|---|---|
+| ![](docs/screenshots/4-progress.png) | ![](docs/screenshots/6-client-log.png) | ![](docs/screenshots/7-mobile-chat.png) |
