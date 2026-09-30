@@ -1,0 +1,14 @@
+{
+  "name": "true-coach-clone",
+  "version": "0.1.0",
+  "description": "پلتفرم مربیگری آنلاین شبیه TrueCoach — برنامه‌ریزی تمرین، پیگیری شاگرد، پیام‌رسانی",
+  "type": "module",
+  "main": "src/server.js",
+  "engines": { "node": ">=22.5" },
+  "scripts": {
+    "start": "node --no-warnings src/server.js",
+    "seed": "node --no-warnings src/seed.js",
+    "test": "node --no-warnings --test test/*.test.js"
+  },
+  "license": "MIT"
+}
