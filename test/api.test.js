@@ -164,7 +164,11 @@ test('serves the SPA', async () => {
 
 test('coaches get the default exercise library, and importing it again adds nothing', async () => {
   const { DEFAULT_EXERCISES } = await import('../src/exercise-library.js');
+  const { DEFAULT_TEMPLATES } = await import('../src/exercise-library.js');
   const names = DEFAULT_EXERCISES.map((e) => e.name);
+  for (const t of DEFAULT_TEMPLATES) {
+    for (const [en] of t.items) assert.ok(DEFAULT_EXERCISES.some((e) => e.en === en), `${t.title}: unknown exercise ${en}`);
+  }
   assert.equal(new Set(names).size, names.length, 'no duplicate exercise names');
 
   const a = agent();
@@ -179,6 +183,12 @@ test('coaches get the default exercise library, and importing it again adds noth
   assert.equal(fmsTemplates.length, 1);
   assert.equal(fmsTemplates[0].items.length, 10);
   assert.ok(fmsTemplates[0].items.every((it) => it.exercise_id));
+
+  // One corrective program per FMS pattern, fully linked to the library.
+  const correctives = (await a('GET', '/api/templates')).body.filter((x) => x.title.startsWith('اصلاحی FMS'));
+  assert.equal(correctives.length, 7);
+  assert.ok(correctives.every((x) => x.items.length >= 6 && x.items.every((it) => it.exercise_id)));
+  assert.equal((await a('GET', '/api/exercises')).body.filter((e) => e.category === 'حرکات اصلاحی FMS').length, 30);
 
   const coach = await login('coach@demo.com');
   assert.ok((await coach('GET', '/api/exercises')).body.length >= DEFAULT_EXERCISES.length);

@@ -616,7 +616,7 @@ async function exercisesView() {
     $('#q').placeholder = `جستجو در ${faNum(exercises.length)} حرکت (فارسی یا انگلیسی)…`;
     $('#cat-list').innerHTML = [...counts.keys()].map((c) => `<option value="${esc(c)}">`).join('');
     $('#cats').innerHTML = [['', 'همه', exercises.length], ...[...counts].map(([c, n]) => [c, c, n])]
-      .map(([value, label, n]) => `<button type="button" class="chip ${value === category ? 'active' : ''}" data-cat="${esc(value)}" aria-pressed="${value === category}">${esc(label)} <span>${faNum(n)}</span></button>`).join('');
+      .map(([value, label, n]) => `<button type="button" class="chip ${value === category ? 'active' : ''}" data-cat="${esc(value)}" aria-pressed="${value === category}"><bdi>${esc(label)}</bdi> <span>${faNum(n)}</span></button>`).join('');
     $$('[data-cat]').forEach((b) => b.addEventListener('click', () => {
       category = b.dataset.cat;
       renderCats();

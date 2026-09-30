@@ -193,6 +193,40 @@ const RAW = [
   ['اسکات ۹۰/۹۰ لگن', '90/90 Hip Switch', 'تحرک و کشش', 'نشسته، هر دو زانو ۹۰ درجه؛ زانوها را به طرف دیگر بچرخانید.'],
   ['تحرک مچ پا روی دیوار', 'Ankle Mobility Wall Drill', 'تحرک و کشش', 'زانو را بدون بلند شدن پاشنه به دیوار برسانید.'],
 
+  // ---------- حرکات اصلاحی FMS ----------
+  // Corrective progressions used after the screen: mobility → stability/motor control → movement pattern.
+  // First line of the cues names the pattern(s) and stage.
+  ['کشش فعال همسترینگ با کش', 'Active Hamstring Stretch with Strap', 'حرکات اصلاحی FMS', 'الگو: بالا آوردن پای صاف · مرحله: تحرک\nطاق‌باز، کش دور کف پا. پا را با زانوی صاف تا اولین حس کشش بالا ببرید، ۲ ثانیه عضله‌ی جلو ران را منقبض کنید و کمی بیشتر بالا ببرید. پای دیگر صاف روی زمین.'],
+  ['پایین آوردن پا با کمک کش', 'Assisted Leg Lowering', 'حرکات اصلاحی FMS', 'الگو: بالا آوردن پای صاف · مرحله: ثبات\nطاق‌باز، هر دو پا بالا. پای کمکی با کش بالا می‌ماند و پای دیگر آهسته تا زمین پایین می‌رود؛ کمر و لگن ثابت.'],
+  ['پایین آوردن پا بدون کمک', 'Leg Lowering', 'حرکات اصلاحی FMS', 'الگو: بالا آوردن پای صاف · مرحله: ثبات\nمانند نسخه‌ی کمکی، پای بالا بدون کش ثابت بماند. پای در حال پایین آمدن زانوی صاف و مچ خم داشته باشد.'],
+  ['پیشروی لمس انگشتان پا', 'Toe Touch Progression', 'حرکات اصلاحی FMS', 'الگو: بالا آوردن پای صاف · مرحله: الگوی حرکتی\nپنجه‌ها روی تخته یا صفحه‌ی بلند، توپ یا بالش بین زانوها. از لگن خم شوید و انگشتان پا را لمس کنید؛ سپس با پاشنه‌ی بالا تکرار کنید.'],
+  ['کشش خواب شانه', 'Sleeper Stretch', 'حرکات اصلاحی FMS', 'الگو: تحرک شانه · مرحله: تحرک\nبه پهلو روی شانه‌ی آزمون، بازو و آرنج ۹۰ درجه. با دست دیگر ساعد را آرام به سمت زمین بچرخانید؛ درد نداشته باشد.'],
+  ['چرخش ستون فقرات با قفل کمر', 'Lumbar-Locked Thoracic Rotation', 'حرکات اصلاحی FMS', 'الگو: تحرک شانه، ثبات چرخشی · مرحله: تحرک\nنشسته روی پاشنه‌ها (قفل کمر)، یک دست پشت کمر. آرنج دست دیگر را به سمت سقف بچرخانید و با بازدم کمی بیشتر.'],
+  ['کشش بریتزل', 'Brettzel Stretch', 'حرکات اصلاحی FMS', 'الگو: تحرک شانه، گام از روی مانع · مرحله: تحرک\nبه پهلو، زانوی بالا ۹۰ درجه روی زمین جلو و مچ پای پایین را از پشت بگیرید. شانه‌ی بالا را به سمت زمین بچرخانید و نفس عمیق بکشید.'],
+  ['اسلاید دیواری', 'Wall Slide', 'حرکات اصلاحی FMS', 'الگو: تحرک شانه · مرحله: ثبات\nپشت یا ساعد به دیوار، کمر صاف. دست‌ها را بدون بالا رفتن شانه به سمت گوش‌ها روی دیوار بالا بلغزانید.'],
+  ['حرکت Y-T-W دمر', 'Prone Y-T-W', 'حرکات اصلاحی FMS', 'الگو: تحرک شانه · مرحله: ثبات\nدمر، شست‌ها رو به بالا. دست‌ها را به شکل Y، سپس T و W بالا ببرید و کتف‌ها را پایین و عقب نگه دارید.'],
+  ['چرخش خارجی شانه با کش', 'Band External Rotation', 'حرکات اصلاحی FMS', 'الگو: تحرک شانه · مرحله: ثبات\nآرنج ۹۰ درجه کنار بدن (یک حوله زیر بغل). ساعد را به بیرون بچرخانید و آهسته برگردید.'],
+  ['آرم‌بار با کتل‌بل', 'Kettlebell Arm Bar', 'حرکات اصلاحی FMS', 'الگو: تحرک شانه · مرحله: الگوی حرکتی\nطاق‌باز با کتل‌بل در دست صاف رو به سقف. به سمت مخالف بچرخید تا دمر شوید؛ دست و نگاه رو به وزنه و شانه ثابت.'],
+  ['رولینگ بالاتنه', 'Upper-Body Segmental Rolling', 'حرکات اصلاحی FMS', 'الگو: ثبات چرخشی · مرحله: ثبات\nطاق‌باز، دست‌ها بالای سر. فقط با حرکت سر و یک دست (بدون کمک پاها) به حالت دمر بچرخید؛ برعکس هم انجام دهید.'],
+  ['رولینگ پایین‌تنه', 'Lower-Body Segmental Rolling', 'حرکات اصلاحی FMS', 'الگو: ثبات چرخشی · مرحله: ثبات\nطاق‌باز، فقط با خم کردن و حرکت یک پا (بدون کمک دست و تنه) به دمر بچرخید.'],
+  ['چاپ نیم‌زانو', 'Half-Kneeling Chop', 'حرکات اصلاحی FMS', 'الگو: ثبات چرخشی، لانج در یک خط · مرحله: الگوی حرکتی\nنیم‌زانو، زانوی جلو دورتر از سیم‌کش یا کش. دسته را از بالای شانه به سمت لگن مقابل بکشید و فشار دهید؛ تنه نچرخد و تعادل حفظ شود.'],
+  ['لیفت نیم‌زانو', 'Half-Kneeling Lift', 'حرکات اصلاحی FMS', 'الگو: ثبات چرخشی، لانج در یک خط · مرحله: الگوی حرکتی\nنیم‌زانو، زانوی جلو نزدیک‌تر به سیم‌کش. دسته را از کنار لگن به بالای شانه‌ی مقابل بکشید و فشار دهید.'],
+  ['پلانک با لمس شانه', 'Plank Shoulder Tap', 'حرکات اصلاحی FMS', 'الگو: شنای ثبات تنه · مرحله: ثبات\nحالت شنا، پاها کمی باز. متناوب با یک دست شانه‌ی مقابل را لمس کنید؛ لگن نچرخد.'],
+  ['شنا پلاس', 'Push-up Plus', 'حرکات اصلاحی FMS', 'الگو: شنای ثبات تنه، تحرک شانه · مرحله: ثبات\nحالت پلانک روی دست یا ساعد. بدون خم کردن آرنج، کتف‌ها را از هم دور کنید (پشت بالا بیاید) و برگردید.'],
+  ['راه رفتن خرسی', 'Bear Crawl', 'حرکات اصلاحی FMS', 'الگو: شنای ثبات تنه، ثبات چرخشی · مرحله: الگوی حرکتی\nچهار دست و پا با زانوهای چند سانت بالاتر از زمین. دست و پای مخالف هم‌زمان قدم بردارند؛ پشت صاف و لگن ثابت.'],
+  ['نگه‌داشتن نیم‌زانو با پایه‌ی باریک', 'Narrow-Base Half-Kneeling Hold', 'حرکات اصلاحی FMS', 'الگو: لانج در یک خط · مرحله: ثبات\nنیم‌زانو روی یک خط (پاها پشت هم)، چوب عمودی پشت بدن. قامت بلند و باسن سفت؛ ۳۰ ثانیه نگه دارید.'],
+  ['اسپلیت اسکات با چوب', 'Split Squat with Dowel', 'حرکات اصلاحی FMS', 'الگو: لانج در یک خط · مرحله: الگوی حرکتی\nمانند لانج تست، چوب با سر و پشت و باسن در تماس. آهسته پایین و بالا بروید؛ هم‌راستایی را حفظ کنید.'],
+  ['خم کردن فعال لگن با کش', 'Supine Active Hip Flexion', 'حرکات اصلاحی FMS', 'الگو: گام از روی مانع · مرحله: تحرک\nطاق‌باز، کش کوچک دور کف پاها. یک زانو را به سمت سینه بکشید در حالی که پای دیگر صاف روی زمین می‌ماند.'],
+  ['ایستادن تک‌پا با بالا آوردن زانو', 'Single-Leg Stance Knee Drive', 'حرکات اصلاحی FMS', 'الگو: گام از روی مانع · مرحله: ثبات\nروی یک پا بایستید، زانوی دیگر را تا هم‌سطح لگن بالا بیاورید و ۱۰ ثانیه نگه دارید؛ لگن صاف و قامت بلند.'],
+  ['مارش با مینی‌بند', 'Mini-Band March', 'حرکات اصلاحی FMS', 'الگو: گام از روی مانع · مرحله: الگوی حرکتی\nکش دور پنجه‌ها یا کف پاها. متناوب زانو را بالا بیاورید؛ پای ایستاده صاف و تنه بدون تاب.'],
+  ['گام از روی مانع کوتاه', 'Mini Hurdle Step-over', 'حرکات اصلاحی FMS', 'الگو: گام از روی مانع · مرحله: الگوی حرکتی\nچوب پشت گردن. آهسته از روی یک مانع کوتاه رد شوید و برگردید؛ ارتفاع را کم‌کم بیشتر کنید.'],
+  ['اسکات تا ایستادن', 'Squat to Stand', 'حرکات اصلاحی FMS', 'الگو: اسکات عمیق · مرحله: تحرک\nانگشتان پا را بگیرید، باسن را پایین ببرید تا اسکات کامل؛ سینه بالا، یک دست را به سقف بچرخانید، سپس پاها را صاف کنید.'],
+  ['راک‌بک با باز کردن ران', 'Adductor Rockback', 'حرکات اصلاحی FMS', 'الگو: اسکات عمیق · مرحله: تحرک\nچهار دست و پا، یک پا صاف به کنار. باسن را به سمت پاشنه عقب ببرید و کمر صاف بماند.'],
+  ['اسکات گابلت با نگه‌داشتن در پایین', 'Goblet Squat Prying Hold', 'حرکات اصلاحی FMS', 'الگو: اسکات عمیق · مرحله: تحرک\nدر پایین اسکات گابلت، با آرنج زانوها را به بیرون فشار دهید و وزن را آرام از یک سمت به سمت دیگر منتقل کنید.'],
+  ['اسکات با کمک TRX یا میله', 'TRX Assisted Squat', 'حرکات اصلاحی FMS', 'الگو: اسکات عمیق · مرحله: ثبات\nدسته‌های TRX را بگیرید و با کمک آن تا عمق کامل اسکات کنید؛ پاشنه‌ها روی زمین.'],
+  ['اسکات با پاشنه‌ی بالا', 'Heels-Elevated Squat', 'حرکات اصلاحی FMS', 'الگو: اسکات عمیق · مرحله: ثبات\nپاشنه روی تخته یا صفحه. اسکات کامل با تنه عمودی؛ کم‌کم ارتفاع را کم کنید.'],
+  ['اسکات بالای سر با چوب', 'Overhead Squat with Dowel', 'حرکات اصلاحی FMS', 'الگو: اسکات عمیق · مرحله: الگوی حرکتی\nهمان الگوی تست؛ چوب بالای سر در امتداد پاها. تکرارهای آهسته با مکث در پایین.'],
+
   // ---------- ارزیابی FMS ----------
   // Functional Movement Screen: 7 tests scored 0–3 (max 21) + 3 clearing tests.
   // Bilateral tests are scored per side and the lower score counts. Pain at any point = 0.
@@ -217,36 +251,145 @@ export const DEFAULT_EXERCISES = RAW.map(([fa, en, category, instructions]) => (
   instructions,
 }));
 
-export const FMS_TEMPLATE_TITLE = 'ارزیابی FMS';
-const FMS_TEST_ORDER = [
-  ['FMS Deep Squat', 'دوطرفه نیست؛ یک نمره'],
-  ['FMS Hurdle Step', 'چپ و راست جدا؛ کمترین نمره ملاک است'],
-  ['FMS Inline Lunge', 'چپ و راست جدا؛ کمترین نمره ملاک است'],
-  ['FMS Shoulder Mobility', 'چپ و راست جدا؛ کمترین نمره ملاک است'],
-  ['FMS Shoulder Clearing Test', 'مثبت/منفی برای هر سمت'],
-  ['FMS Active Straight-Leg Raise', 'چپ و راست جدا؛ کمترین نمره ملاک است'],
-  ['FMS Trunk Stability Push-up', 'یک نمره'],
-  ['FMS Spinal Extension Clearing Test', 'مثبت/منفی'],
-  ['FMS Rotary Stability', 'چپ و راست جدا؛ کمترین نمره ملاک است'],
-  ['FMS Spinal Flexion Clearing Test', 'مثبت/منفی'],
+// Ready-made templates: the FMS screen itself, and one corrective program per pattern.
+// Items: [English name, sets, reps, notes].
+const PRIORITY_NOTE = 'اولویت اصلاح: ابتدا الگویی که درد دارد (ارجاع)، سپس نمره‌ی ۱ و عدم تقارن. ترتیب پیشنهادی: بالا آوردن پای صاف و تحرک شانه ← ثبات چرخشی و شنای ثبات تنه ← لانج و گام از روی مانع ← اسکات عمیق. هر مرحله را وقتی بدون جبران انجام شد به مرحله‌ی بعد بروید و پس از ۲ تا ۴ هفته دوباره تست بگیرید.';
+export const DEFAULT_TEMPLATES = [
+  {
+    title: 'ارزیابی FMS',
+    notes: 'هر تست از ۰ تا ۳ نمره می‌گیرد (مجموع از ۲۱). در ستون نتیجه نمره را بنویسید، مثلاً «چپ ۲ / راست ۳ → ۲». درد در هر تست یا تست پاک‌سازی = ۰ و نیاز به ارجاع.',
+    items: [
+      ['FMS Deep Squat', '1', 'تا ۳ تلاش', 'دوطرفه نیست؛ یک نمره'],
+      ['FMS Hurdle Step', '1', 'تا ۳ تلاش', 'چپ و راست جدا؛ کمترین نمره ملاک است'],
+      ['FMS Inline Lunge', '1', 'تا ۳ تلاش', 'چپ و راست جدا؛ کمترین نمره ملاک است'],
+      ['FMS Shoulder Mobility', '1', 'تا ۳ تلاش', 'چپ و راست جدا؛ کمترین نمره ملاک است'],
+      ['FMS Shoulder Clearing Test', '1', '1', 'مثبت/منفی برای هر سمت'],
+      ['FMS Active Straight-Leg Raise', '1', 'تا ۳ تلاش', 'چپ و راست جدا؛ کمترین نمره ملاک است'],
+      ['FMS Trunk Stability Push-up', '1', 'تا ۳ تلاش', 'یک نمره'],
+      ['FMS Spinal Extension Clearing Test', '1', '1', 'مثبت/منفی'],
+      ['FMS Rotary Stability', '1', 'تا ۳ تلاش', 'چپ و راست جدا؛ کمترین نمره ملاک است'],
+      ['FMS Spinal Flexion Clearing Test', '1', '1', 'مثبت/منفی'],
+    ],
+  },
+  {
+    title: 'اصلاحی FMS: بالا آوردن پای صاف',
+    notes: PRIORITY_NOTE,
+    items: [
+      ['Hip Flexor Stretch', '2', '30 ثانیه هر سمت', 'تحرک'],
+      ['Active Hamstring Stretch with Strap', '2', '8 هر پا', 'تحرک؛ سمت ضعیف‌تر یک ست بیشتر'],
+      ['Assisted Leg Lowering', '2', '8 هر پا', 'ثبات'],
+      ['Leg Lowering', '2', '8 هر پا', 'ثبات؛ بعد از تسلط بر نسخه‌ی کمکی'],
+      ['Toe Touch Progression', '2', '8', 'الگوی حرکتی'],
+      ['Single-Leg Romanian Deadlift', '2', '6 هر پا', 'الگوی حرکتی؛ ابتدا بدون وزنه'],
+    ],
+  },
+  {
+    title: 'اصلاحی FMS: تحرک شانه',
+    notes: PRIORITY_NOTE,
+    items: [
+      ['Foam Roll Upper Back', '1', '60 ثانیه', 'تحرک'],
+      ['Lumbar-Locked Thoracic Rotation', '2', '8 هر سمت', 'تحرک'],
+      ['Sleeper Stretch', '2', '30 ثانیه', 'تحرک؛ فقط سمت محدودتر اگر عدم تقارن دارد'],
+      ['Brettzel Stretch', '2', '5 نفس عمیق هر سمت', 'تحرک'],
+      ['Wall Slide', '2', '10', 'ثبات'],
+      ['Prone Y-T-W', '2', '6 از هر حرف', 'ثبات'],
+      ['Band External Rotation', '2', '12', 'ثبات'],
+      ['Kettlebell Arm Bar', '2', '3 هر سمت، ۲۰ ثانیه مکث', 'الگوی حرکتی؛ وزنه‌ی سبک'],
+      ['Turkish Get-up', '2', '2 هر سمت', 'الگوی حرکتی'],
+    ],
+  },
+  {
+    title: 'اصلاحی FMS: ثبات چرخشی',
+    notes: PRIORITY_NOTE,
+    items: [
+      ['Cat-Cow', '1', '10', 'تحرک'],
+      ["Child's Pose", '1', '30 ثانیه', 'تحرک'],
+      ['Upper-Body Segmental Rolling', '2', '5 هر سمت', 'ثبات'],
+      ['Lower-Body Segmental Rolling', '2', '5 هر سمت', 'ثبات'],
+      ['Bird Dog', '2', '8 هر سمت با ۳ ثانیه مکث', 'ثبات'],
+      ['Dead Bug', '2', '8 هر سمت', 'ثبات'],
+      ['Half-Kneeling Chop', '2', '8 هر سمت', 'الگوی حرکتی'],
+      ['Half-Kneeling Lift', '2', '8 هر سمت', 'الگوی حرکتی'],
+      ['Bear Crawl', '2', '10 متر', 'الگوی حرکتی'],
+    ],
+  },
+  {
+    title: 'اصلاحی FMS: شنای ثبات تنه',
+    notes: PRIORITY_NOTE,
+    items: [
+      ['Plank', '3', '30 ثانیه', 'ثبات'],
+      ['Hollow Body Hold', '3', '20 ثانیه', 'ثبات'],
+      ['Push-up Plus', '2', '10', 'ثبات'],
+      ['Plank Shoulder Tap', '2', '10 هر دست', 'ثبات'],
+      ['Incline Push-up', '3', '8', 'الگوی حرکتی؛ ارتفاع را کم‌کم پایین بیاورید'],
+      ['Bear Crawl', '2', '10 متر', 'الگوی حرکتی'],
+      ['Push-up', '3', '5 تا 8', 'الگوی حرکتی؛ بدن کاملاً یکپارچه'],
+    ],
+  },
+  {
+    title: 'اصلاحی FMS: لانج در یک خط',
+    notes: PRIORITY_NOTE,
+    items: [
+      ['Hip Flexor Stretch', '2', '30 ثانیه هر سمت', 'تحرک'],
+      ['Ankle Mobility Wall Drill', '2', '10 هر پا', 'تحرک'],
+      ["World's Greatest Stretch", '1', '5 هر سمت', 'تحرک'],
+      ['Narrow-Base Half-Kneeling Hold', '3', '30 ثانیه هر سمت', 'ثبات'],
+      ['Half-Kneeling Chop', '2', '8 هر سمت', 'ثبات در الگو'],
+      ['Split Squat with Dowel', '2', '8 هر سمت', 'الگوی حرکتی'],
+      ['Reverse Lunge', '2', '8 هر سمت', 'الگوی حرکتی'],
+    ],
+  },
+  {
+    title: 'اصلاحی FMS: گام از روی مانع',
+    notes: PRIORITY_NOTE,
+    items: [
+      ['Hip Flexor Stretch', '2', '30 ثانیه هر سمت', 'تحرک'],
+      ['90/90 Hip Switch', '2', '8 هر سمت', 'تحرک'],
+      ['Supine Active Hip Flexion', '2', '10 هر پا', 'تحرک'],
+      ['Single-Leg Glute Bridge', '2', '10 هر پا', 'ثبات'],
+      ['Single-Leg Stance Knee Drive', '3', '10 ثانیه × 5 هر پا', 'ثبات'],
+      ['Mini-Band March', '2', '10 هر پا', 'الگوی حرکتی'],
+      ['Mini Hurdle Step-over', '2', '6 هر پا', 'الگوی حرکتی'],
+      ['Step-up', '2', '8 هر پا', 'الگوی حرکتی'],
+    ],
+  },
+  {
+    title: 'اصلاحی FMS: اسکات عمیق',
+    notes: PRIORITY_NOTE + ' اسکات را فقط وقتی اصلاح کنید که بقیه‌ی الگوها حداقل نمره‌ی ۲ و قرینه دارند.',
+    items: [
+      ['Ankle Mobility Wall Drill', '2', '10 هر پا', 'تحرک'],
+      ['Thoracic Rotation', '2', '8 هر سمت', 'تحرک'],
+      ['Adductor Rockback', '2', '8 هر سمت', 'تحرک'],
+      ['Squat to Stand', '2', '8', 'تحرک'],
+      ['Goblet Squat Prying Hold', '2', '30 ثانیه', 'تحرک'],
+      ['TRX Assisted Squat', '2', '10', 'ثبات'],
+      ['Heels-Elevated Squat', '2', '8', 'ثبات'],
+      ['Goblet Squat', '3', '8', 'الگوی حرکتی'],
+      ['Overhead Squat with Dowel', '2', '6', 'الگوی حرکتی'],
+    ],
+  },
 ];
 
-/** Creates the FMS screening template for the coach if they don't have one. Expects the FMS exercises to exist. */
-function ensureFmsTemplate(db, coachId) {
-  if (db.prepare('SELECT 1 FROM templates WHERE coach_id = ? AND title = ?').get(coachId, FMS_TEMPLATE_TITLE)) return;
+/** Creates any default template the coach doesn't have (by title). Expects the default exercises to exist. */
+function ensureDefaultTemplates(db, coachId) {
+  const has = db.prepare('SELECT 1 FROM templates WHERE coach_id = ? AND title = ?');
   const find = db.prepare('SELECT id, name FROM exercises WHERE coach_id = ? AND name = ?');
-  const items = FMS_TEST_ORDER.map(([en, notes]) => {
-    const ex = find.get(coachId, DEFAULT_EXERCISES.find((e) => e.en === en).name);
-    return ex && { exercise_id: ex.id, name: ex.name, sets: '1', reps: 'تا ۳ تلاش', load: '', rest: '', notes };
-  }).filter(Boolean);
-  db.prepare('INSERT INTO templates (coach_id, title, notes, items_json) VALUES (?, ?, ?, ?)').run(coachId, FMS_TEMPLATE_TITLE,
-    'هر تست از ۰ تا ۳ نمره می‌گیرد (مجموع از ۲۱). در ستون نتیجه نمره را بنویسید، مثلاً «چپ ۲ / راست ۳ → ۲». درد در هر تست یا تست پاک‌سازی = ۰ و نیاز به ارجاع.',
-    JSON.stringify(items));
+  const insert = db.prepare('INSERT INTO templates (coach_id, title, notes, items_json) VALUES (?, ?, ?, ?)');
+  for (const t of DEFAULT_TEMPLATES) {
+    if (has.get(coachId, t.title)) continue;
+    const items = t.items.map(([en, sets, reps, notes]) => {
+      const def = DEFAULT_EXERCISES.find((e) => e.en === en);
+      // Prefer the coach's copy (linked to their library); fall back to a plain item if they deleted it.
+      const ex = find.get(coachId, def.name) ?? find.get(coachId, def.fa);
+      return { exercise_id: ex?.id ?? null, name: ex?.name ?? def.name, sets, reps, load: '', rest: '', notes };
+    });
+    insert.run(coachId, t.title, t.notes, JSON.stringify(items));
+  }
 }
 
 /**
  * Adds default exercises the coach doesn't already have (matched by full or Persian-only name)
- * and makes sure the FMS template exists. Returns how many exercises were added.
+ * and makes sure the default templates exist. Returns how many exercises were added.
  */
 export function importDefaultExercises(db, coachId) {
   const exists = db.prepare('SELECT 1 FROM exercises WHERE coach_id = ? AND name = ?');
@@ -257,6 +400,6 @@ export function importDefaultExercises(db, coachId) {
     insert.run(coachId, e.name, e.category, e.video_url, e.instructions);
     added++;
   }
-  ensureFmsTemplate(db, coachId);
+  ensureDefaultTemplates(db, coachId);
   return added;
 }
