@@ -85,6 +85,29 @@ function action(fn) {
 
 const formData = (form) => Object.fromEntries(new FormData(form).entries());
 
+/** In-page replacement for the browser's confirm/prompt dialogs. Resolves to null on cancel. */
+function ask(message, { input = null, type = 'text', okLabel = null, danger = false } = {}) {
+  return new Promise((resolve) => {
+    const dlg = document.createElement('dialog');
+    dlg.className = 'modal';
+    dlg.innerHTML = `<form method="dialog">
+      <p>${esc(message)}</p>
+      ${input !== null ? `<input id="ask-input" type="${type}" value="${esc(input)}" required>` : ''}
+      <div class="row">
+        <button value="ok" class="${danger ? 'danger-solid' : ''}">${okLabel ?? (danger ? 'حذف' : 'تأیید')}</button>
+        <button value="cancel" class="ghost" formnovalidate>انصراف</button>
+      </div></form>`;
+    document.body.append(dlg);
+    dlg.addEventListener('close', () => {
+      const value = input !== null ? $('#ask-input', dlg).value.trim() : true;
+      dlg.remove();
+      resolve(dlg.returnValue === 'ok' && value ? value : null);
+    });
+    dlg.showModal();
+    (input !== null ? $('#ask-input', dlg) : $('button', dlg)).focus();
+  });
+}
+
 // ---------- layout ----------
 
 function renderChrome() {
@@ -355,14 +378,14 @@ async function calendarTab(client, el) {
     c.addEventListener('keydown', (e) => e.key === 'Enter' && !e.target.closest('button') && open());
   });
   $$('[data-copy]', el).forEach((b) => b.addEventListener('click', action(async () => {
-    const target = prompt('کپی به چه تاریخی؟ (YYYY-MM-DD)', addDays(workouts.find((w) => w.id == b.dataset.copy).date, 7));
+    const target = await ask('این تمرین به چه تاریخی کپی شود؟', { input: addDays(workouts.find((w) => w.id == b.dataset.copy).date, 7), type: 'date', okLabel: 'کپی' });
     if (!target) return;
     await api(`/api/workouts/${b.dataset.copy}/copy`, { method: 'POST', body: { date: target } });
     toast('تمرین کپی شد');
     rerender();
   })));
   $$('[data-del]', el).forEach((b) => b.addEventListener('click', action(async () => {
-    if (!confirm('این تمرین حذف شود؟')) return;
+    if (!(await ask('این تمرین حذف شود؟', { danger: true }))) return;
     await api(`/api/workouts/${b.dataset.del}`, { method: 'DELETE' });
     toast('حذف شد');
     rerender();
@@ -392,7 +415,7 @@ function clientSettings(client, el) {
     router();
   }));
   $('#delete', el).addEventListener('click', action(async () => {
-    if (!confirm(`همه اطلاعات «${client.name}» حذف شود؟ این کار برگشت‌پذیر نیست.`)) return;
+    if (!(await ask(`همه اطلاعات «${client.name}» حذف شود؟ این کار برگشت‌پذیر نیست.`, { danger: true }))) return;
     await api(`/api/clients/${client.id}`, { method: 'DELETE' });
     toast('حذف شد');
     location.hash = '#/clients';
@@ -528,13 +551,13 @@ async function workoutEditor(workoutId, query) {
     location.hash = `#/clients/${client.id}`;
   }));
   $('#as-tpl')?.addEventListener('click', action(async () => {
-    const title = prompt('نام قالب:', $('#f').title.value);
+    const title = await ask('نام قالب:', { input: $('#f').title.value, okLabel: 'ذخیره' });
     if (!title) return;
     await api(`/api/workouts/${workoutId}/save-template`, { method: 'POST', body: { title } });
     toast('به قالب‌ها اضافه شد');
   }));
   $('#del')?.addEventListener('click', action(async () => {
-    if (!confirm('این تمرین حذف شود؟')) return;
+    if (!(await ask('این تمرین حذف شود؟', { danger: true }))) return;
     await api(`/api/workouts/${workoutId}`, { method: 'DELETE' });
     toast('حذف شد');
     location.hash = `#/clients/${client.id}`;
@@ -587,7 +610,7 @@ async function exercisesView() {
       form.scrollIntoView({ behavior: 'smooth' });
     }));
     $$('[data-del]').forEach((b) => b.addEventListener('click', action(async () => {
-      if (!confirm('این حرکت از کتابخانه حذف شود؟ (تمرین‌های قبلی تغییر نمی‌کنند)')) return;
+      if (!(await ask('این حرکت از کتابخانه حذف شود؟ (تمرین‌های قبلی تغییر نمی‌کنند)', { danger: true }))) return;
       await api(`/api/exercises/${b.dataset.del}`, { method: 'DELETE' });
       exercises = exercises.filter((x) => x.id != b.dataset.del);
       renderList();
@@ -638,7 +661,7 @@ async function templatesView() {
     toast(`برای ${clients.find((c) => c.id == body.client_id).name} برنامه‌ریزی شد`);
   })));
   $$('[data-del]').forEach((b) => b.addEventListener('click', action(async () => {
-    if (!confirm('این قالب حذف شود؟')) return;
+    if (!(await ask('این قالب حذف شود؟', { danger: true }))) return;
     await api(`/api/templates/${b.dataset.del}`, { method: 'DELETE' });
     router();
   })));
@@ -847,7 +870,7 @@ async function progressView(clientId, el) {
     progressView(clientId, el);
   }));
   $$('[data-del]', el).forEach((b) => b.addEventListener('click', action(async () => {
-    if (!confirm('این رکورد حذف شود؟')) return;
+    if (!(await ask('این رکورد حذف شود؟', { danger: true }))) return;
     await api(`/api/metrics/${b.dataset.del}`, { method: 'DELETE' });
     progressView(clientId, el);
   })));

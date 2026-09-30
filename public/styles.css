@@ -15,7 +15,7 @@
   --radius: 10px;
 }
 @media (prefers-color-scheme: dark) {
-  :root {
+  :root:not([data-theme="light"]) {
     --bg: #11151c;
     --surface: #1a2029;
     --text: #e6e9ef;
@@ -29,7 +29,24 @@
     --bad-soft: #3b1f22;
     --warn: #e7b53c;
     --warn-soft: #3a3016;
+    color-scheme: dark;
   }
+}
+:root[data-theme="dark"] {
+  --bg: #11151c;
+  --surface: #1a2029;
+  --text: #e6e9ef;
+  --muted: #97a0b3;
+  --border: #2a3240;
+  --primary: #5b9bff;
+  --primary-soft: #1d2d4a;
+  --ok: #3fc584;
+  --ok-soft: #173327;
+  --bad: #f07474;
+  --bad-soft: #3b1f22;
+  --warn: #e7b53c;
+  --warn-soft: #3a3016;
+  color-scheme: dark;
 }
 
 * { box-sizing: border-box; }
@@ -49,7 +66,7 @@ h3 { font-size: 1rem; margin: 0 0 8px; }
 #topbar {
   display: flex; align-items: center; gap: 20px;
   padding: 10px 20px; background: var(--surface); border-bottom: 1px solid var(--border);
-  position: sticky; top: 0; z-index: 10; flex-wrap: wrap;
+  position: sticky; top: env(safe-area-inset-top, 0px); z-index: 10; flex-wrap: wrap;
 }
 .brand { font-weight: 700; font-size: 1.1rem; color: var(--text); }
 #nav { display: flex; gap: 4px; flex: 1; flex-wrap: wrap; }
@@ -170,3 +187,12 @@ th { color: var(--muted); font-weight: 500; font-size: 0.85rem; }
 #toast.error { background: var(--bad); color: #fff; }
 
 .empty { text-align: center; color: var(--muted); padding: 30px 10px; }
+
+dialog.modal {
+  border: 1px solid var(--border); border-radius: var(--radius); background: var(--surface); color: var(--text);
+  padding: 20px; width: min(380px, calc(100vw - 32px));
+}
+dialog.modal::backdrop { background: rgb(0 0 0 / 0.4); }
+dialog.modal p { margin: 0 0 12px; }
+dialog.modal input { margin-bottom: 12px; }
+button.danger-solid { background: var(--bad); }

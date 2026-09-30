@@ -4,11 +4,14 @@
   "description": "پلتفرم مربیگری آنلاین شبیه TrueCoach — برنامه‌ریزی تمرین، پیگیری شاگرد، پیام‌رسانی",
   "type": "module",
   "main": "src/server.js",
-  "engines": { "node": ">=22.5" },
+  "engines": {
+    "node": ">=22.5"
+  },
   "scripts": {
     "start": "node --no-warnings src/server.js",
     "seed": "node --no-warnings src/seed.js",
-    "test": "node --no-warnings --test test/*.test.js"
+    "test": "node --no-warnings --test test/*.test.js",
+    "build:demo": "node scripts/build-demo.mjs"
   },
   "license": "MIT"
 }
