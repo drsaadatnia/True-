@@ -568,56 +568,90 @@ async function workoutEditor(workoutId, query) {
 
 async function exercisesView() {
   let exercises = await api('/api/exercises');
+  let category = '';
   view.innerHTML = `
-    <h1>کتابخانه حرکات</h1>
-    <form id="f" class="card">
+    <div class="row spread">
+      <h1>کتابخانه حرکات</h1>
+      <div class="row">
+        <button type="button" class="ghost" id="import">بارگذاری کتابخانه‌ی کامل</button>
+        <button type="button" id="new">+ حرکت جدید</button>
+      </div>
+    </div>
+    <form id="f" class="card" hidden>
       <h2 id="form-title">حرکت جدید</h2>
       <input type="hidden" name="id">
       <div class="grid cols-2">
         <label><span>نام حرکت</span><input name="name" required></label>
-        <label><span>دسته (عضله / نوع)</span><input name="category" placeholder="پا، سینه، هوازی…"></label>
+        <label><span>دسته (عضله / نوع)</span><input name="category" list="cat-list" placeholder="پا، سینه، هوازی…"></label>
       </div>
+      <datalist id="cat-list"></datalist>
       <label><span>لینک ویدیوی آموزشی (یوتیوب، آپارات…)</span><input name="video_url" type="url" dir="ltr"></label>
       <label><span>نحوه اجرا</span><textarea name="instructions"></textarea></label>
-      <div class="row"><button>ذخیره</button><button type="button" class="ghost" id="reset" hidden>انصراف</button></div>
+      <div class="row"><button>ذخیره</button><button type="button" class="ghost" id="cancel-edit">انصراف</button></div>
     </form>
     <div class="card">
-      <input id="q" placeholder="جستجو در ${faNum(exercises.length)} حرکت…" style="margin-bottom:10px">
+      <input id="q" style="margin-bottom:10px">
+      <div class="chips" id="cats"></div>
       <div id="list"></div>
     </div>`;
   const form = $('#f');
-  const resetForm = () => {
+  const closeForm = () => {
     form.reset();
     form.id.value = '';
-    $('#form-title').textContent = 'حرکت جدید';
-    $('#reset').hidden = true;
+    form.hidden = true;
+  };
+  const openForm = (e = null) => {
+    form.reset();
+    for (const k of ['id', 'name', 'category', 'video_url', 'instructions']) form[k].value = e ? e[k] : '';
+    if (!e && category) form.category.value = category;
+    $('#form-title').textContent = e ? `ویرایش «${e.name}»` : 'حرکت جدید';
+    form.hidden = false;
+    form.scrollIntoView({ behavior: 'smooth' });
+    form.name.focus({ preventScroll: true });
+  };
+  const renderCats = () => {
+    const counts = new Map();
+    for (const e of exercises) counts.set(e.category || 'بدون دسته', (counts.get(e.category || 'بدون دسته') ?? 0) + 1);
+    if (category && !counts.has(category)) category = '';
+    $('#q').placeholder = `جستجو در ${faNum(exercises.length)} حرکت (فارسی یا انگلیسی)…`;
+    $('#cat-list').innerHTML = [...counts.keys()].map((c) => `<option value="${esc(c)}">`).join('');
+    $('#cats').innerHTML = [['', 'همه', exercises.length], ...[...counts].map(([c, n]) => [c, c, n])]
+      .map(([value, label, n]) => `<button type="button" class="chip ${value === category ? 'active' : ''}" data-cat="${esc(value)}" aria-pressed="${value === category}">${esc(label)} <span>${faNum(n)}</span></button>`).join('');
+    $$('[data-cat]').forEach((b) => b.addEventListener('click', () => {
+      category = b.dataset.cat;
+      renderCats();
+      renderList();
+    }));
   };
   const renderList = () => {
-    const q = $('#q').value.trim();
-    const shown = exercises.filter((e) => !q || e.name.includes(q) || e.category.includes(q));
+    const q = $('#q').value.trim().toLowerCase();
+    const shown = exercises.filter((e) =>
+      (!category || (e.category || 'بدون دسته') === category)
+      && (!q || e.name.toLowerCase().includes(q) || e.category.includes(q)));
     $('#list').innerHTML = shown.length ? shown.map((e) => `
       <div class="list-item">
-        <div><strong>${esc(e.name)}</strong> ${e.category ? `<span class="badge">${esc(e.category)}</span>` : ''}
+        <div style="min-width:0"><strong>${esc(e.name)}</strong> ${e.category && !category ? `<span class="badge">${esc(e.category)}</span>` : ''}
           ${e.video_url ? `<a class="small" href="${esc(e.video_url)}" target="_blank" rel="noopener">▶ ویدیو</a>` : ''}
           ${e.instructions ? `<div class="small muted">${esc(e.instructions)}</div>` : ''}</div>
-        <div class="row"><button class="icon" data-edit="${e.id}">ویرایش</button><button class="icon" data-del="${e.id}">حذف</button></div>
+        <div class="row" style="flex-wrap:nowrap"><button class="icon" data-edit="${e.id}">ویرایش</button><button class="icon" data-del="${e.id}">حذف</button></div>
       </div>`).join('') : '<div class="empty">حرکتی پیدا نشد</div>';
-    $$('[data-edit]').forEach((b) => b.addEventListener('click', () => {
-      const e = exercises.find((x) => x.id == b.dataset.edit);
-      for (const k of ['id', 'name', 'category', 'video_url', 'instructions']) form[k].value = e[k];
-      $('#form-title').textContent = `ویرایش «${e.name}»`;
-      $('#reset').hidden = false;
-      form.scrollIntoView({ behavior: 'smooth' });
-    }));
+    $$('[data-edit]').forEach((b) => b.addEventListener('click', () => openForm(exercises.find((x) => x.id == b.dataset.edit))));
     $$('[data-del]').forEach((b) => b.addEventListener('click', action(async () => {
       if (!(await ask('این حرکت از کتابخانه حذف شود؟ (تمرین‌های قبلی تغییر نمی‌کنند)', { danger: true }))) return;
       await api(`/api/exercises/${b.dataset.del}`, { method: 'DELETE' });
       exercises = exercises.filter((x) => x.id != b.dataset.del);
+      renderCats();
       renderList();
     })));
   };
   $('#q').addEventListener('input', renderList);
-  $('#reset').addEventListener('click', resetForm);
+  $('#new').addEventListener('click', () => openForm());
+  $('#cancel-edit').addEventListener('click', closeForm);
+  $('#import').addEventListener('click', action(async () => {
+    const { added } = await api('/api/exercises/import-defaults', { method: 'POST' });
+    toast(added ? `${faNum(added)} حرکت به کتابخانه اضافه شد` : 'همه‌ی حرکات کتابخانه‌ی کامل از قبل موجود است');
+    if (added) exercisesView();
+  }));
   form.addEventListener('submit', action(async () => {
     const { id, ...body } = formData(form);
     if (id) {
@@ -628,9 +662,11 @@ async function exercisesView() {
     }
     exercises.sort((a, b) => a.category.localeCompare(b.category, 'fa') || a.name.localeCompare(b.name, 'fa'));
     toast('ذخیره شد');
-    resetForm();
+    closeForm();
+    renderCats();
     renderList();
   }));
+  renderCats();
   renderList();
 }
 

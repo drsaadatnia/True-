@@ -21,7 +21,7 @@ function stripModule(src) {
     .replace(/^if \(import\.meta\.url[\s\S]*$/m, ''); // seed.js CLI entry
 }
 
-const server = ['src/db.js', 'src/auth.js', 'src/app.js', 'src/seed.js'].map((f) => `// ---- ${f}\n${stripModule(read(f))}`).join('\n');
+const server = ['src/db.js', 'src/auth.js', 'src/exercise-library.js', 'src/app.js', 'src/seed.js'].map((f) => `// ---- ${f}\n${stripModule(read(f))}`).join('\n');
 for (const leftover of ['import ', 'import.meta', 'require(']) {
   if (server.includes(leftover)) throw new Error(`bundle still contains "${leftover}"`);
 }
@@ -124,6 +124,8 @@ const backend = (async () => {
     db = openDb(':memory:');
   }
   if (!db.prepare('SELECT 1 FROM users LIMIT 1').get()) seedDemo(db);
+  // Give coaches from an older saved demo the full exercise library.
+  for (const { id } of db.prepare("SELECT id FROM users WHERE role = 'coach'").all()) importDefaultExercises(db, id);
   const persist = () => storage.set(STORE_KEY, toBase64(db.db.export()));
   persist();
   return { handler: createApp(db), persist };

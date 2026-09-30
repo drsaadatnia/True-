@@ -2,18 +2,7 @@ import { pathToFileURL } from 'node:url';
 import { hashPassword } from './auth.js';
 import { openDb, tx } from './db.js';
 import { today } from './app.js';
-
-const EXERCISES = [
-  ['اسکات با هالتر', 'پا', 'https://www.youtube.com/watch?v=ultWZbUMPL8', 'پاها به عرض شانه، کمر صاف، تا موازی زمین پایین بروید.'],
-  ['ددلیفت رومانیایی', 'پا', '', 'زانوها کمی خم، باسن را به عقب ببرید و هالتر را نزدیک پا نگه دارید.'],
-  ['پرس سینه با هالتر', 'سینه', 'https://www.youtube.com/watch?v=rT7DgCr-3pg', 'کتف‌ها جمع، هالتر تا وسط سینه پایین بیاید.'],
-  ['بارفیکس', 'پشت', '', 'از حالت آویزان کامل شروع کنید و چانه را بالای میله ببرید.'],
-  ['پارویی دمبل تک‌دست', 'پشت', '', 'آرنج را به سمت لگن بکشید، تنه ثابت بماند.'],
-  ['پرس سرشانه دمبل', 'شانه', '', 'در حالت نشسته یا ایستاده، دمبل‌ها را بالای سر ببرید.'],
-  ['لانج راه‌رفتنی', 'پا', '', 'زانوی جلو پشت نوک پا بماند.'],
-  ['پلانک', 'میان‌تنه', '', 'بدن در یک خط صاف، شکم سفت.'],
-  ['طناب‌زنی', 'هوازی', '', 'روی پنجه پا، با ریتم ثابت.'],
-];
+import { DEFAULT_EXERCISES, importDefaultExercises } from './exercise-library.js';
 
 export function seedDemo(db) {
   tx(db, () => {
@@ -23,12 +12,17 @@ export function seedDemo(db) {
     const sara = Number(addUser.run('client', 'سارا احمدی', 'client@demo.com', pw, coachId, 'کاهش ۵ کیلو وزن و افزایش قدرت').lastInsertRowid);
     const reza = Number(addUser.run('client', 'رضا کریمی', 'reza@demo.com', pw, coachId, 'آماده‌سازی برای مسابقه پاورلیفتینگ').lastInsertRowid);
 
-    const addEx = db.prepare('INSERT INTO exercises (coach_id, name, category, video_url, instructions) VALUES (?, ?, ?, ?, ?)');
-    const ex = EXERCISES.map((e) => ({ id: Number(addEx.run(coachId, ...e).lastInsertRowid), name: e[0] }));
-    const item = (i, sets, reps, load = '', rest = '90 ثانیه') => ({ exercise_id: ex[i].id, name: ex[i].name, sets, reps, load, rest, notes: '' });
+    importDefaultExercises(db, coachId);
+    const findEx = db.prepare('SELECT id, name FROM exercises WHERE coach_id = ? AND name = ?');
+    const item = (en, sets, reps, load = '', rest = '90 ثانیه') => {
+      const ex = findEx.get(coachId, DEFAULT_EXERCISES.find((e) => e.en === en).name);
+      return { exercise_id: ex.id, name: ex.name, sets, reps, load, rest, notes: '' };
+    };
 
-    const lower = [item(0, '4', '8', '60kg'), item(1, '3', '10', '40kg'), item(6, '3', '12 هر پا'), item(7, '3', '45 ثانیه', '', '30 ثانیه')];
-    const upper = [item(2, '4', '8', '40kg'), item(3, '3', 'حداکثر'), item(4, '3', '10', '14kg'), item(5, '3', '10', '10kg')];
+    const lower = [item('Back Squat', '4', '8', '60kg'), item('Romanian Deadlift', '3', '10', '40kg'),
+      item('Walking Lunge', '3', '12 هر پا'), item('Plank', '3', '45 ثانیه', '', '30 ثانیه')];
+    const upper = [item('Barbell Bench Press', '4', '8', '40kg'), item('Pull-up', '3', 'حداکثر'),
+      item('One-Arm Dumbbell Row', '3', '10', '14kg'), item('Seated Dumbbell Shoulder Press', '3', '10', '10kg')];
     const addTpl = db.prepare('INSERT INTO templates (coach_id, title, notes, items_json) VALUES (?, ?, ?, ?)');
     addTpl.run(coachId, 'پایین‌تنه A', 'گرم کردن ۱۰ دقیقه‌ای فراموش نشود.', JSON.stringify(lower));
     addTpl.run(coachId, 'بالاتنه A', '', JSON.stringify(upper));

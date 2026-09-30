@@ -196,3 +196,9 @@ dialog.modal::backdrop { background: rgb(0 0 0 / 0.4); }
 dialog.modal p { margin: 0 0 12px; }
 dialog.modal input { margin-bottom: 12px; }
 button.danger-solid { background: var(--bad); }
+
+.chips { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 8px; }
+.chip { background: transparent; color: var(--muted); border: 1px solid var(--border); border-radius: 99px; padding: 3px 12px; font-size: 0.85rem; }
+.chip span { font-size: 0.75rem; opacity: 0.8; }
+.chip.active { background: var(--primary-soft); color: var(--primary); border-color: var(--primary); }
+.chip:focus-visible, button:focus-visible, a:focus-visible { outline: 2px solid var(--primary); outline-offset: 2px; }

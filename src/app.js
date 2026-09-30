@@ -2,6 +2,7 @@ import { readFile } from 'node:fs/promises';
 import { extname, join, normalize } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { tx } from './db.js';
+import { importDefaultExercises } from './exercise-library.js';
 import {
   createSession, destroySession, hashPassword, parseCookies,
   sessionCookie, sessionUser, verifyPassword,
@@ -188,8 +189,12 @@ export function createApp(db) {
     if (!EMAIL_RE.test(email)) throw new HttpError(400, 'ایمیل نامعتبر است');
     if (password.length < 6) throw new HttpError(400, 'رمز عبور باید حداقل ۶ کاراکتر باشد');
     if (db.prepare('SELECT 1 FROM users WHERE email = ?').get(email)) throw new HttpError(409, 'این ایمیل قبلاً ثبت شده است');
-    const { lastInsertRowid } = db.prepare(`INSERT INTO users (role, name, email, password_hash)
-      VALUES ('coach', ?, ?, ?)`).run(name, email, hashPassword(password));
+    const { lastInsertRowid } = tx(db, () => {
+      const res = db.prepare(`INSERT INTO users (role, name, email, password_hash)
+        VALUES ('coach', ?, ?, ?)`).run(name, email, hashPassword(password));
+      importDefaultExercises(db, Number(res.lastInsertRowid));
+      return res;
+    });
     ctx.setCookie(sessionCookie(createSession(db, Number(lastInsertRowid))));
     return created({ user: sessionUserById(Number(lastInsertRowid)) });
   });
@@ -319,6 +324,11 @@ export function createApp(db) {
     const { lastInsertRowid } = db.prepare(`INSERT INTO exercises (coach_id, name, category, video_url, instructions)
       VALUES (?, ?, ?, ?, ?)`).run(coach.id, f.name, f.category, f.video_url, f.instructions);
     return created(ownExercise(coach.id, Number(lastInsertRowid)));
+  });
+
+  route('POST', '/api/exercises/import-defaults', (ctx) => {
+    const coach = requireCoach(ctx);
+    return { added: tx(db, () => importDefaultExercises(db, coach.id)) };
   });
 
   route('PUT', '/api/exercises/:id', (ctx) => {

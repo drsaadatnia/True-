@@ -161,3 +161,17 @@ test('serves the SPA', async () => {
   const escape = await fetch(`${base}/../src/db.js`);
   assert.doesNotMatch(await escape.text(), /DatabaseSync/);
 });
+
+test('coaches get the default exercise library, and importing it again adds nothing', async () => {
+  const { DEFAULT_EXERCISES } = await import('../src/exercise-library.js');
+  const names = DEFAULT_EXERCISES.map((e) => e.name);
+  assert.equal(new Set(names).size, names.length, 'no duplicate exercise names');
+
+  const a = agent();
+  await a('POST', '/api/auth/register', { name: 'Lib Coach', email: 'lib@coach.com', password: 'secret1' });
+  assert.equal((await a('GET', '/api/exercises')).body.length, DEFAULT_EXERCISES.length);
+  assert.deepEqual((await a('POST', '/api/exercises/import-defaults', {})).body, { added: 0 });
+
+  const coach = await login('coach@demo.com');
+  assert.ok((await coach('GET', '/api/exercises')).body.length >= DEFAULT_EXERCISES.length);
+});
