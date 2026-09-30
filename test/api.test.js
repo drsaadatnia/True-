@@ -172,6 +172,14 @@ test('coaches get the default exercise library, and importing it again adds noth
   assert.equal((await a('GET', '/api/exercises')).body.length, DEFAULT_EXERCISES.length);
   assert.deepEqual((await a('POST', '/api/exercises/import-defaults', {})).body, { added: 0 });
 
+  // FMS: 7 tests + 3 clearing tests, plus one screening template that isn't duplicated on re-import.
+  const fms = (await a('GET', '/api/exercises')).body.filter((e) => e.category === 'ارزیابی FMS');
+  assert.equal(fms.length, 10);
+  const fmsTemplates = (await a('GET', '/api/templates')).body.filter((x) => x.title === 'ارزیابی FMS');
+  assert.equal(fmsTemplates.length, 1);
+  assert.equal(fmsTemplates[0].items.length, 10);
+  assert.ok(fmsTemplates[0].items.every((it) => it.exercise_id));
+
   const coach = await login('coach@demo.com');
   assert.ok((await coach('GET', '/api/exercises')).body.length >= DEFAULT_EXERCISES.length);
 });

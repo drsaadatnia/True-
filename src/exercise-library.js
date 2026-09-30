@@ -192,6 +192,20 @@ const RAW = [
   ['کش‌آپارت', 'Band Pull-Apart', 'تحرک و کشش', 'کش جلوی سینه، دست‌ها صاف را به طرفین باز کنید.'],
   ['اسکات ۹۰/۹۰ لگن', '90/90 Hip Switch', 'تحرک و کشش', 'نشسته، هر دو زانو ۹۰ درجه؛ زانوها را به طرف دیگر بچرخانید.'],
   ['تحرک مچ پا روی دیوار', 'Ankle Mobility Wall Drill', 'تحرک و کشش', 'زانو را بدون بلند شدن پاشنه به دیوار برسانید.'],
+
+  // ---------- ارزیابی FMS ----------
+  // Functional Movement Screen: 7 tests scored 0–3 (max 21) + 3 clearing tests.
+  // Bilateral tests are scored per side and the lower score counts. Pain at any point = 0.
+  ['اسکات عمیق', 'FMS Deep Squat', 'ارزیابی FMS', 'چیدمان: پاها به عرض شانه و رو به جلو، چوب بالای سر با دست‌ها صاف (آرنج ۹۰ درجه روی سر و سپس صاف). تا پایین‌ترین عمق ممکن اسکات کنید؛ حداکثر ۳ تلاش.\nنمره ۳: تنه موازی ساق یا عمودی‌تر، ران زیر خط افق، زانوها هم‌راستای پا، چوب بالای پاها.\nنمره ۲: معیارهای بالا فقط با قرار دادن پاشنه روی تخته (۵ سانت).\nنمره ۱: حتی با تخته انجام نمی‌شود.\nنمره ۰: درد در هر مرحله.'],
+  ['گام از روی مانع', 'FMS Hurdle Step', 'ارزیابی FMS', 'چیدمان: ارتفاع طناب هم‌سطح برجستگی زیر زانو (توبروزیته تیبیا)، پاها کنار هم پشت مانع، چوب پشت گردن روی شانه‌ها. یک پا را از روی طناب رد کنید، پاشنه را زمین بزنید و برگردید. هر سمت جدا نمره دهید.\nنمره ۳: لگن، زانو و مچ پا در یک خط؛ حرکت کم یا صفر کمر؛ چوب و طناب موازی.\nنمره ۲: جبران حرکتی (چرخش یا خم شدن تنه، ناهم‌راستایی).\nنمره ۱: برخورد پا به طناب یا از دست دادن تعادل.\nنمره ۰: درد.'],
+  ['لانج در یک خط', 'FMS Inline Lunge', 'ارزیابی FMS', 'چیدمان: طول ساق را اندازه بگیرید و پاها را به همان فاصله روی یک خط (تخته) پشت هم بگذارید. چوب پشت بدن: دست هم‌سمت پای جلو پایین، دست دیگر پشت گردن؛ چوب با سر، پشت و باسن تماس دارد. زانوی عقب را به پاشنه‌ی پای جلو برسانید. هر سمت جدا.\nنمره ۳: تماس چوب حفظ شود، چوب عمودی، بدون حرکت تنه، پاها روی خط، زانو پشت پاشنه‌ی جلو را لمس کند.\nنمره ۲: جبران حرکتی یا از دست دادن تماس چوب.\nنمره ۱: از دست دادن تعادل یا ناتوانی در انجام.\nنمره ۰: درد.'],
+  ['تحرک شانه', 'FMS Shoulder Mobility', 'ارزیابی FMS', 'چیدمان: طول دست (از چین مچ تا نوک انگشت میانی) را اندازه بگیرید. مشت‌ها را ببندید (شست داخل) و در یک حرکت یک دست از بالای شانه و دست دیگر از پایین پشت کمر به هم نزدیک کنید. فاصله‌ی دو مشت را بسنجید. هر سمت جدا (نام سمت = دست بالا).\nنمره ۳: فاصله‌ی مشت‌ها کمتر از یک طول دست.\nنمره ۲: کمتر از یک‌ونیم طول دست.\nنمره ۱: بیشتر از یک‌ونیم طول دست.\nنمره ۰: درد در این تست یا تست پاک‌سازی شانه.'],
+  ['بالا آوردن فعال پای صاف', 'FMS Active Straight-Leg Raise', 'ارزیابی FMS', 'چیدمان: طاق‌باز، کف دست‌ها رو به بالا کنار بدن، تخته زیر زانوها. نقطه‌ی وسط بین برجستگی لگن (ASIS) و وسط کشکک را مشخص کنید. پای آزمون را با زانوی صاف و مچ خم به سمت بالا ببرید؛ پای دیگر روی تخته بماند. هر سمت جدا.\nنمره ۳: قوزک پا از نقطه‌ی میانی ران بالاتر برود.\nنمره ۲: قوزک بین نقطه‌ی میانی ران و خط مفصل زانو.\nنمره ۱: قوزک پایین‌تر از خط مفصل زانو.\nنمره ۰: درد.'],
+  ['شنای ثبات تنه', 'FMS Trunk Stability Push-up', 'ارزیابی FMS', 'چیدمان: دمر، دست‌ها به عرض شانه. مردان: شست‌ها هم‌سطح بالای پیشانی؛ زنان: هم‌سطح چانه. بدن را یکپارچه (بدون افتادن کمر) به حالت شنا بالا ببرید.\nنمره ۳: یک تکرار یکپارچه از وضعیت اول (مردان پیشانی / زنان چانه).\nنمره ۲: یک تکرار یکپارچه از وضعیت آسان‌تر (مردان چانه / زنان ترقوه).\nنمره ۱: در وضعیت آسان‌تر هم ممکن نیست.\nنمره ۰: درد در این تست یا تست پاک‌سازی باز شدن ستون فقرات.'],
+  ['ثبات چرخشی', 'FMS Rotary Stability', 'ارزیابی FMS', 'چیدمان: چهار دست و پا روی تخته، شانه و لگن ۹۰ درجه. ابتدا حرکت هم‌طرف: دست و پای یک سمت را هم‌زمان صاف کنید و سپس آرنج و زانوی همان سمت را زیر بدن به هم برسانید. اگر ممکن نبود، حرکت ضربدری (دست و پای مخالف) را بسنجید. هر سمت جدا.\nنمره ۳: یک تکرار صحیح هم‌طرف با تنه موازی تخته.\nنمره ۲: یک تکرار صحیح ضربدری.\nنمره ۱: ناتوانی در انجام ضربدری.\nنمره ۰: درد در این تست یا تست پاک‌سازی خم شدن ستون فقرات.'],
+  ['تست پاک‌سازی شانه', 'FMS Shoulder Clearing Test', 'ارزیابی FMS', 'بعد از تست تحرک شانه: کف دست را روی شانه‌ی مقابل بگذارید و آرنج را تا حد ممکن بالا ببرید (کف دست روی شانه بماند). هر سمت جدا.\nنتیجه: مثبت (درد) یا منفی. اگر مثبت باشد، نمره‌ی تحرک شانه‌ی همان سمت ۰ ثبت می‌شود و فرد برای بررسی ارجاع داده می‌شود.'],
+  ['تست پاک‌سازی باز شدن ستون فقرات', 'FMS Spinal Extension Clearing Test', 'ارزیابی FMS', 'بعد از شنای ثبات تنه: دمر، دست‌ها زیر شانه. بدون بلند کردن لگن و پاها، با دست‌ها تنه را بالا ببرید (حالت کبرا).\nنتیجه: مثبت (درد) یا منفی. اگر مثبت باشد، نمره‌ی شنای ثبات تنه ۰ ثبت می‌شود.'],
+  ['تست پاک‌سازی خم شدن ستون فقرات', 'FMS Spinal Flexion Clearing Test', 'ارزیابی FMS', 'بعد از ثبات چرخشی: چهار دست و پا، باسن را به پاشنه‌ها ببرید، سینه روی ران‌ها و دست‌ها تا حد ممکن جلو (حالت کودک).\nنتیجه: مثبت (درد) یا منفی. اگر مثبت باشد، نمره‌ی ثبات چرخشی ۰ ثبت می‌شود.'],
 ];
 
 export const DEFAULT_EXERCISES = RAW.map(([fa, en, category, instructions]) => ({
@@ -203,7 +217,37 @@ export const DEFAULT_EXERCISES = RAW.map(([fa, en, category, instructions]) => (
   instructions,
 }));
 
-/** Adds default exercises the coach doesn't already have (matched by full or Persian-only name). Returns how many were added. */
+export const FMS_TEMPLATE_TITLE = 'ارزیابی FMS';
+const FMS_TEST_ORDER = [
+  ['FMS Deep Squat', 'دوطرفه نیست؛ یک نمره'],
+  ['FMS Hurdle Step', 'چپ و راست جدا؛ کمترین نمره ملاک است'],
+  ['FMS Inline Lunge', 'چپ و راست جدا؛ کمترین نمره ملاک است'],
+  ['FMS Shoulder Mobility', 'چپ و راست جدا؛ کمترین نمره ملاک است'],
+  ['FMS Shoulder Clearing Test', 'مثبت/منفی برای هر سمت'],
+  ['FMS Active Straight-Leg Raise', 'چپ و راست جدا؛ کمترین نمره ملاک است'],
+  ['FMS Trunk Stability Push-up', 'یک نمره'],
+  ['FMS Spinal Extension Clearing Test', 'مثبت/منفی'],
+  ['FMS Rotary Stability', 'چپ و راست جدا؛ کمترین نمره ملاک است'],
+  ['FMS Spinal Flexion Clearing Test', 'مثبت/منفی'],
+];
+
+/** Creates the FMS screening template for the coach if they don't have one. Expects the FMS exercises to exist. */
+function ensureFmsTemplate(db, coachId) {
+  if (db.prepare('SELECT 1 FROM templates WHERE coach_id = ? AND title = ?').get(coachId, FMS_TEMPLATE_TITLE)) return;
+  const find = db.prepare('SELECT id, name FROM exercises WHERE coach_id = ? AND name = ?');
+  const items = FMS_TEST_ORDER.map(([en, notes]) => {
+    const ex = find.get(coachId, DEFAULT_EXERCISES.find((e) => e.en === en).name);
+    return ex && { exercise_id: ex.id, name: ex.name, sets: '1', reps: 'تا ۳ تلاش', load: '', rest: '', notes };
+  }).filter(Boolean);
+  db.prepare('INSERT INTO templates (coach_id, title, notes, items_json) VALUES (?, ?, ?, ?)').run(coachId, FMS_TEMPLATE_TITLE,
+    'هر تست از ۰ تا ۳ نمره می‌گیرد (مجموع از ۲۱). در ستون نتیجه نمره را بنویسید، مثلاً «چپ ۲ / راست ۳ → ۲». درد در هر تست یا تست پاک‌سازی = ۰ و نیاز به ارجاع.',
+    JSON.stringify(items));
+}
+
+/**
+ * Adds default exercises the coach doesn't already have (matched by full or Persian-only name)
+ * and makes sure the FMS template exists. Returns how many exercises were added.
+ */
 export function importDefaultExercises(db, coachId) {
   const exists = db.prepare('SELECT 1 FROM exercises WHERE coach_id = ? AND name = ?');
   const insert = db.prepare('INSERT INTO exercises (coach_id, name, category, video_url, instructions) VALUES (?, ?, ?, ?, ?)');
@@ -213,5 +257,6 @@ export function importDefaultExercises(db, coachId) {
     insert.run(coachId, e.name, e.category, e.video_url, e.instructions);
     added++;
   }
+  ensureFmsTemplate(db, coachId);
   return added;
 }

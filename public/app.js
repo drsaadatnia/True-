@@ -632,7 +632,7 @@ async function exercisesView() {
       <div class="list-item">
         <div style="min-width:0"><strong>${esc(e.name)}</strong> ${e.category && !category ? `<span class="badge">${esc(e.category)}</span>` : ''}
           ${e.video_url ? `<a class="small" href="${esc(e.video_url)}" target="_blank" rel="noopener">▶ ویدیو</a>` : ''}
-          ${e.instructions ? `<div class="small muted">${esc(e.instructions)}</div>` : ''}</div>
+          ${e.instructions ? `<div class="small muted pre">${esc(e.instructions)}</div>` : ''}</div>
         <div class="row" style="flex-wrap:nowrap"><button class="icon" data-edit="${e.id}">ویرایش</button><button class="icon" data-del="${e.id}">حذف</button></div>
       </div>`).join('') : '<div class="empty">حرکتی پیدا نشد</div>';
     $$('[data-edit]').forEach((b) => b.addEventListener('click', () => openForm(exercises.find((x) => x.id == b.dataset.edit))));
@@ -783,9 +783,9 @@ async function workoutLog(workoutId) {
             ${it.rest ? `<span>استراحت: <b>${esc(it.rest)}</b></span>` : ''}
           </div>
           ${it.notes ? `<div class="small">💡 ${esc(it.notes)}</div>` : ''}
-          ${it.instructions ? `<details class="small muted"><summary>نحوه اجرا</summary>${esc(it.instructions)}</details>` : ''}
-          <label style="margin:8px 0 0"><span>نتیجه شما (وزنه/تکرار انجام‌شده)</span>
-            <input name="r${it.id}" value="${esc(it.result)}" placeholder="مثلاً ۴×۸ با ۶۰ کیلو"></label>
+          ${it.instructions ? `<details class="small muted pre"><summary>نحوه اجرا</summary>${esc(it.instructions)}</details>` : ''}
+          <label style="margin:8px 0 0"><span>${it.category === 'ارزیابی FMS' ? 'نمره (۰ تا ۳)' : 'نتیجه شما (وزنه/تکرار انجام‌شده)'}</span>
+            <input name="r${it.id}" value="${esc(it.result)}" placeholder="${it.category === 'ارزیابی FMS' ? 'مثلاً چپ ۲ / راست ۳ → ۲' : 'مثلاً ۴×۸ با ۶۰ کیلو'}"></label>
         </div>`).join('')}
       <div class="card">
         <label><span>نظر برای مربی</span><textarea name="comment" placeholder="حس‌تان چطور بود؟ دردی داشتید؟">${esc(w.client_comment)}</textarea></label>
